@@ -18,9 +18,39 @@ final class DiaryListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        setUpTableViewDataSource()
+        setSnapshot()
     }
 }
 
+// MARK: - Configure TableView DataSource & Delegate
+private extension DiaryListViewController {
+    func setUpTableViewDataSource() {
+        dataSource = UITableViewDiffableDataSource<Int, Int>(
+            tableView: tableView
+        ) { table, indexPath, item in
+            
+            let cell = UITableViewCell()
+            var content = cell.defaultContentConfiguration()
+            
+            content.text = item.description
+            
+            cell.contentConfiguration = content
+            
+            return cell
+        }
+    }
+    
+    func setSnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Int>()
+        
+        snapshot.appendSections([.zero])
+        snapshot.appendItems(Array(0..<10))
+        dataSource?.apply(snapshot)
+    }
+}
+
+// MARK: - Configure UI
 private extension DiaryListViewController {
     func configureUI() {
         setNavigationBar()
