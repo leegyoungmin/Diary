@@ -12,6 +12,7 @@
 		1834075D29A49DC700332413 /* DiaryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834075C29A49DC700332413 /* DiaryListViewController.swift */; };
 		1834076229A49DC800332413 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1834076129A49DC800332413 /* Assets.xcassets */; };
 		1834076529A49DC800332413 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1834076329A49DC800332413 /* LaunchScreen.storyboard */; };
+		1834077429A4A14800332413 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1834077329A4A14800332413 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1834077429A4A14800332413 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +130,9 @@
 			dependencies = (
 			);
 			name = DiaryMVVM;
+			packageProductDependencies = (
+				1834077329A4A14800332413 /* SnapKit */,
+			);
 			productName = DiaryMVVM;
 			productReference = 1834075529A49DC700332413 /* DiaryMVVM.app */;
 			productType = "com.apple.product-type.application";
@@ -156,6 +161,9 @@
 				Base,
 			);
 			mainGroup = 1834074C29A49DC700332413;
+			packageReferences = (
+				1834077229A4A14800332413 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 1834075629A49DC700332413 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -402,6 +410,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1834077229A4A14800332413 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1834077329A4A14800332413 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1834077229A4A14800332413 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1834074D29A49DC700332413 /* Project object */;
 }
