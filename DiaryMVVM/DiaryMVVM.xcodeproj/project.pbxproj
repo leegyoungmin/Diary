@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1834075929A49DC700332413 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834075829A49DC700332413 /* AppDelegate.swift */; };
 		1834075B29A49DC700332413 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834075A29A49DC700332413 /* SceneDelegate.swift */; };
-		1834075D29A49DC700332413 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834075C29A49DC700332413 /* ViewController.swift */; };
+		1834075D29A49DC700332413 /* DiaryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834075C29A49DC700332413 /* DiaryListViewController.swift */; };
 		1834076229A49DC800332413 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1834076129A49DC800332413 /* Assets.xcassets */; };
 		1834076529A49DC800332413 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1834076329A49DC800332413 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -18,7 +18,7 @@
 		1834075529A49DC700332413 /* DiaryMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaryMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1834075829A49DC700332413 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1834075A29A49DC700332413 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1834075C29A49DC700332413 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1834075C29A49DC700332413 /* DiaryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListViewController.swift; sourceTree = "<group>"; };
 		1834076129A49DC800332413 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1834076429A49DC800332413 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1834076629A49DC800332413 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,9 +63,10 @@
 		1834076C29A49F5E00332413 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1834075829A49DC700332413 /* AppDelegate.swift */,
-				1834075A29A49DC700332413 /* SceneDelegate.swift */,
-				1834075C29A49DC700332413 /* ViewController.swift */,
+				1834077129A4A00800332413 /* App */,
+				1834076E29A49FF500332413 /* Model */,
+				1834076F29A49FF800332413 /* View */,
+				1834077029A49FFB00332413 /* ViewModel */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -78,6 +79,37 @@
 				1834076629A49DC800332413 /* Info.plist */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		1834076E29A49FF500332413 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1834076F29A49FF800332413 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1834075C29A49DC700332413 /* DiaryListViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1834077029A49FFB00332413 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1834077129A4A00800332413 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1834075829A49DC700332413 /* AppDelegate.swift */,
+				1834075A29A49DC700332413 /* SceneDelegate.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,7 +182,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1834075D29A49DC700332413 /* ViewController.swift in Sources */,
+				1834075D29A49DC700332413 /* DiaryListViewController.swift in Sources */,
 				1834075929A49DC700332413 /* AppDelegate.swift in Sources */,
 				1834075B29A49DC700332413 /* SceneDelegate.swift in Sources */,
 			);
