@@ -14,6 +14,8 @@ final class DiaryListViewController: UIViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(DiaryListCell.self, forCellReuseIdentifier: DiaryListCell.identifier)
         return tableView
     }()
     
@@ -43,12 +45,13 @@ private extension DiaryListViewController {
             tableView: tableView
         ) { table, indexPath, item in
             
-            let cell = UITableViewCell()
-            var content = cell.defaultContentConfiguration()
+            guard let cell = table.dequeueReusableCell(
+                withIdentifier: DiaryListCell.identifier
+            ) as? DiaryListCell else {
+                return UITableViewCell()
+            }
             
-            content.text = item.title
-            
-            cell.contentConfiguration = content
+            cell.setDiary(with: item)
             
             return cell
         }
