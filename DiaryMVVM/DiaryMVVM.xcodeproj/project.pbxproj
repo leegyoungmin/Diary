@@ -54,14 +54,30 @@
 		1834075729A49DC700332413 /* DiaryMVVM */ = {
 			isa = PBXGroup;
 			children = (
+				1834076D29A49F6600332413 /* Sources */,
+				1834076C29A49F5E00332413 /* Resources */,
+			);
+			path = DiaryMVVM;
+			sourceTree = "<group>";
+		};
+		1834076C29A49F5E00332413 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				1834075829A49DC700332413 /* AppDelegate.swift */,
 				1834075A29A49DC700332413 /* SceneDelegate.swift */,
 				1834075C29A49DC700332413 /* ViewController.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1834076D29A49F6600332413 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
 				1834076129A49DC800332413 /* Assets.xcassets */,
 				1834076329A49DC800332413 /* LaunchScreen.storyboard */,
 				1834076629A49DC800332413 /* Info.plist */,
 			);
-			path = DiaryMVVM;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,7 +293,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BH7V49ZZ2G;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DiaryMVVM/Info.plist;
+				INFOPLIST_FILE = DiaryMVVM/Sources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -309,7 +325,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BH7V49ZZ2G;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DiaryMVVM/Info.plist;
+				INFOPLIST_FILE = DiaryMVVM/Sources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
