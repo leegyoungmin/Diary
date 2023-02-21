@@ -13,6 +13,7 @@
 		1834076229A49DC800332413 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1834076129A49DC800332413 /* Assets.xcassets */; };
 		1834076529A49DC800332413 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1834076329A49DC800332413 /* LaunchScreen.storyboard */; };
 		1834077429A4A14800332413 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1834077329A4A14800332413 /* SnapKit */; };
+		1834077929A4A95300332413 /* DiaryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834077829A4A95300332413 /* DiaryListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		1834076129A49DC800332413 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1834076429A49DC800332413 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1834076629A49DC800332413 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1834077829A4A95300332413 /* DiaryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +44,7 @@
 			children = (
 				1834075729A49DC700332413 /* DiaryMVVM */,
 				1834075629A49DC700332413 /* Products */,
+				1834077529A4A8AF00332413 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +104,7 @@
 		1834077029A49FFB00332413 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				1834077829A4A95300332413 /* DiaryListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -112,6 +116,13 @@
 				1834075A29A49DC700332413 /* SceneDelegate.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		1834077529A4A8AF00332413 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +201,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1834077929A4A95300332413 /* DiaryListViewModel.swift in Sources */,
 				1834075D29A49DC700332413 /* DiaryListViewController.swift in Sources */,
 				1834075929A49DC700332413 /* AppDelegate.swift in Sources */,
 				1834075B29A49DC700332413 /* SceneDelegate.swift in Sources */,

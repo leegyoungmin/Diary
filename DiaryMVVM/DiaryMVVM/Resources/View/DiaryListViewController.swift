@@ -4,10 +4,14 @@
 //
 //  Copyright (c) 2023 Minii All rights reserved.
         
+import Combine
 import SnapKit
 import UIKit
 
 final class DiaryListViewController: UIViewController {
+    private var cancellables = Set<AnyCancellable>()
+    private let viewModel: DiaryListViewModel = DiaryListViewModel()
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         return tableView
@@ -19,7 +23,16 @@ final class DiaryListViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         setUpTableViewDataSource()
-        setSnapshot()
+        
+        bind()
+    }
+}
+
+private extension DiaryListViewController {
+    func bind() {
+        viewModel.$diaries
+            .sink { self.setSnapshot(with: $0) }
+            .store(in: &cancellables)
     }
 }
 
@@ -41,11 +54,11 @@ private extension DiaryListViewController {
         }
     }
     
-    func setSnapshot() {
+    func setSnapshot(with values: [Int]) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, Int>()
         
         snapshot.appendSections([.zero])
-        snapshot.appendItems(Array(0..<10))
+        snapshot.appendItems(values)
         dataSource?.apply(snapshot)
     }
 }
