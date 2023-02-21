@@ -13,6 +13,8 @@ final class DiaryListViewController: UIViewController {
         return tableView
     }()
     
+    private var dataSource: UITableViewDiffableDataSource<Int, Int>?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -21,6 +23,7 @@ final class DiaryListViewController: UIViewController {
 
 private extension DiaryListViewController {
     func configureUI() {
+        setNavigationBar()
         addChildComponents()
         setUpLayout()
     }
@@ -37,5 +40,16 @@ private extension DiaryListViewController {
             $0.trailing.equalTo(safeArea.trailing)
             $0.bottom.equalToSuperview()
         }
+    }
+    
+    func setNavigationBar() {
+        navigationItem.title = "일기장"
+        let presentAction = UIAction { _ in
+            print("Tapped present Button")
+        }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add, primaryAction: presentAction)
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
 }
