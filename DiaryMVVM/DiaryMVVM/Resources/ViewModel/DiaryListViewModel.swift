@@ -7,13 +7,13 @@
 import Combine
 
 final class DiaryListViewModel {
-    @Published var diaries: [Int] = []
+    @Published var diaries: [Diary] = []
     
     init() {
         fetchData()
     }
     
     func fetchData() {
-        diaries.append(contentsOf: 0...10)
+        diaries = Diary.mock
     }
 }

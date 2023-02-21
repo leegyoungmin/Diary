@@ -17,7 +17,7 @@ final class DiaryListViewController: UIViewController {
         return tableView
     }()
     
-    private var dataSource: UITableViewDiffableDataSource<Int, Int>?
+    private var dataSource: UITableViewDiffableDataSource<Int, Diary>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,14 +39,14 @@ private extension DiaryListViewController {
 // MARK: - Configure TableView DataSource & Delegate
 private extension DiaryListViewController {
     func setUpTableViewDataSource() {
-        dataSource = UITableViewDiffableDataSource<Int, Int>(
+        dataSource = UITableViewDiffableDataSource<Int, Diary>(
             tableView: tableView
         ) { table, indexPath, item in
             
             let cell = UITableViewCell()
             var content = cell.defaultContentConfiguration()
             
-            content.text = item.description
+            content.text = item.title
             
             cell.contentConfiguration = content
             
@@ -54,8 +54,8 @@ private extension DiaryListViewController {
         }
     }
     
-    func setSnapshot(with values: [Int]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, Int>()
+    func setSnapshot(with values: [Diary]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Diary>()
         
         snapshot.appendSections([.zero])
         snapshot.appendItems(values)
