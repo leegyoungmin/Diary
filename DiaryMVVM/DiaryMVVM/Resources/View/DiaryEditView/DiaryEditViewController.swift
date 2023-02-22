@@ -6,6 +6,7 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 final class DiaryEditViewController: UIViewController {
     private let titleTextField: UITextField = {
@@ -24,10 +25,40 @@ final class DiaryEditViewController: UIViewController {
         return textView
     }()
     
+    private let viewModel: DiaryEditViewModel
+    private var cancellables = Set<AnyCancellable>()
+    
+    init(viewModel: DiaryEditViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
+        
+        bind()
+    }
+}
+
+private extension DiaryEditViewController {
+    func bind() {
+        viewModel.$title
+            .sink { [weak self] in self?.titleTextField.text = $0 }
+            .store(in: &cancellables)
+        
+        viewModel.$body
+            .sink { [weak self] in self?.bodyTextView.text = $0 }
+            .store(in: &cancellables)
+        
+        viewModel.$date
+            .sink { [weak self] in self?.navigationItem.title = $0.description }
+            .store(in: &cancellables)
     }
 }
 
@@ -35,7 +66,6 @@ final class DiaryEditViewController: UIViewController {
 private extension DiaryEditViewController {
     func configureUI() {
         view.backgroundColor = .systemBackground
-        configureNavigation()
         addChildComponents()
         setUpLayout()
     }
@@ -57,9 +87,5 @@ private extension DiaryEditViewController {
             $0.trailing.equalTo(titleTextField.snp.trailing)
             $0.bottom.equalToSuperview()
         }
-    }
-    
-    func configureNavigation() {
-        navigationItem.title = Date().description
     }
 }

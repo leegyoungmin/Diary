@@ -91,7 +91,8 @@ private extension DiaryListViewController {
     func setNavigationBar() {
         navigationItem.title = "일기장"
         let presentAction = UIAction { _ in
-            let controller = DiaryEditViewController()
+            let viewModel = DiaryEditViewModel()
+            let controller = DiaryEditViewController(viewModel: viewModel)
             self.navigationController?.pushViewController(controller, animated: true)
         }
         
