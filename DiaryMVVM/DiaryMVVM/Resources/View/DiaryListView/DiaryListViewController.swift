@@ -28,6 +28,12 @@ final class DiaryListViewController: UIViewController {
         
         bind()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.fetchData()
+    }
 }
 
 private extension DiaryListViewController {
