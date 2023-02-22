@@ -10,6 +10,7 @@ import SnapKit
 final class DiaryEditViewController: UIViewController {
     private let titleTextField: UITextField = {
         let textField = UITextField()
+        textField.font = .preferredFont(forTextStyle: .title1)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "제목을 입력하세요."
         return textField
@@ -17,6 +18,7 @@ final class DiaryEditViewController: UIViewController {
     
     private let bodyTextView: UITextView = {
         let textView = UITextView()
+        textView.font = .preferredFont(forTextStyle: .body)
         textView.textContainer.lineFragmentPadding = .zero
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
@@ -44,7 +46,7 @@ private extension DiaryEditViewController {
         titleTextField.snp.makeConstraints {
             $0.leading.equalTo(view.readableContentGuide.snp.leading)
             $0.trailing.equalTo(view.readableContentGuide.snp.trailing)
-            $0.top.equalTo(view.readableContentGuide.snp.top)
+            $0.top.equalTo(view.readableContentGuide.snp.top).offset(8)
         }
         
         bodyTextView.snp.makeConstraints {
