@@ -34,6 +34,8 @@ final class DiaryEditViewController: UIViewController {
 // MARK: - Configure UI
 private extension DiaryEditViewController {
     func configureUI() {
+        view.backgroundColor = .systemBackground
+        configureNavigation()
         addChildComponents()
         setUpLayout()
     }
@@ -55,5 +57,9 @@ private extension DiaryEditViewController {
             $0.trailing.equalTo(titleTextField.snp.trailing)
             $0.bottom.equalToSuperview()
         }
+    }
+    
+    func configureNavigation() {
+        navigationItem.title = Date().description
     }
 }
