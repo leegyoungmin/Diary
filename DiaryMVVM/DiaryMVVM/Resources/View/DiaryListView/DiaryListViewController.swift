@@ -28,9 +28,9 @@ final class DiaryListViewController: UIViewController {
         
         bind()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         viewModel.fetchData()
     }
@@ -68,7 +68,7 @@ private extension DiaryListViewController {
         
         snapshot.appendSections([.zero])
         snapshot.appendItems(values)
-        dataSource?.apply(snapshot)
+        dataSource?.apply(snapshot, animatingDifferences: false)
     }
 }
 

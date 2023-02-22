@@ -125,4 +125,11 @@ final class DiaryListCell: UITableViewCell {
     func setDiary(with diary: Diary) {
         self.diary = diary
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        diary = nil
+        contentConfiguration = nil
+    }
 }
