@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1824876429A5EDDE00C1F95A /* DiaryEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1824876329A5EDDE00C1F95A /* DiaryEditViewController.swift */; };
 		1834075929A49DC700332413 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834075829A49DC700332413 /* AppDelegate.swift */; };
 		1834075B29A49DC700332413 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834075A29A49DC700332413 /* SceneDelegate.swift */; };
 		1834075D29A49DC700332413 /* DiaryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834075C29A49DC700332413 /* DiaryListViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1824876329A5EDDE00C1F95A /* DiaryEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEditViewController.swift; sourceTree = "<group>"; };
 		1834075529A49DC700332413 /* DiaryMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaryMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1834075829A49DC700332413 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1834075A29A49DC700332413 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1824876229A5EDCF00C1F95A /* DiaryEditView */ = {
+			isa = PBXGroup;
+			children = (
+				1824876329A5EDDE00C1F95A /* DiaryEditViewController.swift */,
+			);
+			path = DiaryEditView;
+			sourceTree = "<group>";
+		};
 		1834074C29A49DC700332413 = {
 			isa = PBXGroup;
 			children = (
@@ -77,9 +87,9 @@
 		1834076C29A49F5E00332413 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1834078829A51BF000332413 /* Utility */,
 				1834077129A4A00800332413 /* App */,
 				1834076E29A49FF500332413 /* Model */,
+				1834078829A51BF000332413 /* Utility */,
 				1834076F29A49FF800332413 /* View */,
 				1834077029A49FFB00332413 /* ViewModel */,
 			);
@@ -108,6 +118,7 @@
 		1834076F29A49FF800332413 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1824876229A5EDCF00C1F95A /* DiaryEditView */,
 				1834077D29A4B10F00332413 /* DiaryListView */,
 			);
 			path = View;
@@ -236,6 +247,7 @@
 				1834077F29A4B11A00332413 /* DiaryListCell.swift in Sources */,
 				1834077B29A4AFF100332413 /* Diary.swift in Sources */,
 				1834078729A51B4D00332413 /* Diary.xcdatamodeld in Sources */,
+				1824876429A5EDDE00C1F95A /* DiaryEditViewController.swift in Sources */,
 				1834075D29A49DC700332413 /* DiaryListViewController.swift in Sources */,
 				1834075929A49DC700332413 /* AppDelegate.swift in Sources */,
 				1834075B29A49DC700332413 /* SceneDelegate.swift in Sources */,
