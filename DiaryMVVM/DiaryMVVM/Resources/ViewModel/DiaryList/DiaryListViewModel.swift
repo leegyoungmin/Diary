@@ -11,15 +11,9 @@ final class DiaryListViewModel {
     private var cancellables = Set<AnyCancellable>()
     let coreDataRepository = DiaryCoreDataRepository()
     
-    init() {
-        fetchData()
-    }
-    
     func fetchData() {
         coreDataRepository.readData()
-            .sink { objects in
-                self.diaries = objects
-            }
+            .sink { self.diaries = $0 }
             .store(in: &cancellables)
     }
 }
