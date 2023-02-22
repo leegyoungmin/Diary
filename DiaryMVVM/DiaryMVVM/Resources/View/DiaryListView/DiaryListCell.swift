@@ -20,9 +20,19 @@ final class DiaryListCellContentView: UIView, UIContentView {
         }
     }
     
-    private let headerLabel = UILabel()
+    private let headerLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 1
+        return label
+    }()
+    
     private let dateLabel = UILabel()
-    private let bodyLabel = UILabel()
+    private let bodyLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        return label
+    }()
     
     private var viewModel: DiaryListCellViewModel
     private var cancellables = Set<AnyCancellable>()

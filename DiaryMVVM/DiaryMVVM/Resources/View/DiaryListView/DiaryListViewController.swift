@@ -91,11 +91,9 @@ private extension DiaryListViewController {
     func setNavigationBar() {
         navigationItem.title = "일기장"
         let presentAction = UIAction { _ in
-            print("Tapped present Button")
+            print("123")
         }
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add, primaryAction: presentAction)
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
 }
