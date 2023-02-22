@@ -4,7 +4,10 @@
 //
 //  Copyright (c) 2023 Minii All rights reserved.
 
+import Foundation
+
 struct Diary: Hashable {
+    var id = UUID()
     var title: String
     var body: String
     var createDate: Int

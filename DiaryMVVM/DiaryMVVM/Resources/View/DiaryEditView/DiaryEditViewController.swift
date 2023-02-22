@@ -64,11 +64,19 @@ private extension DiaryEditViewController {
     
     func bindAction() {
         titleTextField.textChangePublisher
-            .assign(to: \.title, on: viewModel)
+            .debounce(for: 1, scheduler: RunLoop.main)
+            .sink { [weak self] in
+                self?.viewModel.title = $0
+                self?.viewModel.saveData()
+            }
             .store(in: &cancellables)
         
         bodyTextView.textChangePublisher
-            .assign(to: \.body, on: viewModel)
+            .debounce(for: 1, scheduler: RunLoop.main)
+            .sink { [weak self] in
+                self?.viewModel.body = $0
+                self?.viewModel.saveData()
+            }
             .store(in: &cancellables)
     }
 }
