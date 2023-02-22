@@ -50,3 +50,19 @@ extension UIControl {
         }
     }
 }
+
+extension UITextField {
+    var textChangePublisher: AnyPublisher<String, Never> {
+        return controlPublisher(for: .editingChanged)
+            .compactMap { ($0 as? UITextField)?.text as? String }
+            .eraseToAnyPublisher()
+    }
+}
+
+extension UITextView {
+    var textChangePublisher: AnyPublisher<String, Never> {
+        NotificationCenter.default.publisher(for: UITextView.textDidChangeNotification)
+            .compactMap { ($0.object as? UITextView)?.text }
+            .eraseToAnyPublisher()
+    }
+}

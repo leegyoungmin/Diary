@@ -43,6 +43,7 @@ final class DiaryEditViewController: UIViewController {
         configureUI()
         
         bind()
+        bindAction()
     }
 }
 
@@ -58,6 +59,16 @@ private extension DiaryEditViewController {
         
         viewModel.$date
             .sink { [weak self] in self?.navigationItem.title = $0.description }
+            .store(in: &cancellables)
+    }
+    
+    func bindAction() {
+        titleTextField.textChangePublisher
+            .assign(to: \.title, on: viewModel)
+            .store(in: &cancellables)
+        
+        bodyTextView.textChangePublisher
+            .assign(to: \.body, on: viewModel)
             .store(in: &cancellables)
     }
 }
