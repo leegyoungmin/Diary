@@ -8,12 +8,18 @@ import Combine
 
 final class DiaryListViewModel {
     @Published var diaries: [Diary] = []
+    private var cancellables = Set<AnyCancellable>()
+    let coreDataRepository = DiaryCoreDataRepository()
     
     init() {
         fetchData()
     }
     
     func fetchData() {
-        diaries = Diary.mock
+        coreDataRepository.readData()
+            .sink { objects in
+                self.diaries = objects
+            }
+            .store(in: &cancellables)
     }
 }

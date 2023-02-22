@@ -5,6 +5,7 @@
 //  Copyright (c) 2023 Minii All rights reserved.
 
 import Combine
+import Foundation
 
 final class DiaryListCellViewModel {
     @Published var title: String?
@@ -14,6 +15,6 @@ final class DiaryListCellViewModel {
     init(diary: Diary?) {
         self.title = diary?.title
         self.body = diary?.body
-        self.createdDate = diary?.createDate.description
+        self.createdDate = Date(timeIntervalSince1970: TimeInterval(diary?.createDate ?? .zero)).description
     }
 }
