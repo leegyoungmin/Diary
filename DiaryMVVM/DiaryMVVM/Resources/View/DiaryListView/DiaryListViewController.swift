@@ -70,7 +70,12 @@ extension DiaryListViewController: UITableViewDelegate {
         deleteAction.image = UIImage(systemName: "trash.fill")
         
         let shareAction = UIContextualAction(style: .normal, title: nil) { _, view, completion in
-            // TODO: - 공유 옵션 설정하기
+            let diary = self.viewModel.diaries[indexPath.row]
+            let shareText = (diary.title + "\n" + diary.body)
+            
+            let activityViewController = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view
+            self.present(activityViewController, animated: true)
             completion(true)
         }
         shareAction.image = UIImage(systemName: "icloud.and.arrow.up.fill")
