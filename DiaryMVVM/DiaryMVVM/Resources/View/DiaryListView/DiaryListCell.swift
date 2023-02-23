@@ -26,11 +26,18 @@ final class DiaryListCellContentView: UIView, UIContentView {
         return label
     }()
     
-    private let dateLabel = UILabel()
-    private let bodyLabel: UILabel = {
+    private let dateLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        label.setContentHuggingPriority(.required, for: .horizontal)
+        return label
+    }()
+    
+    private let bodyLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.setContentCompressionResistancePriority(.required, for: .horizontal)
         return label
     }()
     
@@ -75,7 +82,7 @@ final class DiaryListCellContentView: UIView, UIContentView {
     private func configureUI() {
         let innerStackView = UIStackView(arrangedSubviews: [dateLabel, bodyLabel])
         innerStackView.alignment = .leading
-        innerStackView.distribution = .fill
+        innerStackView.distribution = .fillProportionally
         innerStackView.spacing = 8
         
         let totalStackView = UIStackView(arrangedSubviews: [headerLabel, innerStackView])
