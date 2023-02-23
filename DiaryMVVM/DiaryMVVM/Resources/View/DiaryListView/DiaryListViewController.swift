@@ -46,7 +46,7 @@ private extension DiaryListViewController {
     }
 }
 
-// MARK: - Configure TableView DataSource & Delegate
+// MARK: - Configure TableView Delegate
 extension DiaryListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -58,8 +58,26 @@ extension DiaryListViewController: UITableViewDelegate {
         let editViewController = DiaryEditViewController(viewModel: viewModel)
         navigationController?.pushViewController(editViewController, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: nil) { _, view, completion in
+            // TODO: - 삭제 옵션 설정하기
+            completion(true)
+        }
+        deleteAction.image = UIImage(systemName: "trash.fill")
+        
+        let shareAction = UIContextualAction(style: .normal, title: nil) { _, view, completion in
+            // TODO: - 공유 옵션 설정하기
+            completion(true)
+        }
+        shareAction.image = UIImage(systemName: "icloud.and.arrow.up.fill")
+        shareAction.backgroundColor = .systemBlue
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction, shareAction])
+    }
 }
 
+// MARK: - Configure TableView DataSource & Snapshot
 private extension DiaryListViewController {
     func setUpTableViewDataSource() {
         tableView.delegate = self
