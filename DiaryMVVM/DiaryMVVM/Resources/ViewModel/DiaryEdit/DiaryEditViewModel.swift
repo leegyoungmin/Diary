@@ -11,24 +11,27 @@ final class DiaryEditViewModel {
     private var id: UUID
     @Published var title: String = ""
     @Published var body: String = ""
-    @Published var date: Date = Date()
+    @Published var date: String = ""
     
     private let coreDataRepository: DiaryCoreDataRepository
     
     init(diary: Diary? = nil, coreDataRepository: DiaryCoreDataRepository) {
-        if let diary = diary {
-            self.id = diary.id
-            self.title = diary.title
-            self.body = diary.body
-            self.date = Date(timeIntervalSince1970: TimeInterval(diary.createDate))
+        self.coreDataRepository = coreDataRepository
+        
+        guard let diary = diary else {
+            self.id = UUID()
+            self.date = Date().formatted()
+            return
         }
         
-        self.id = UUID()
-        self.coreDataRepository = coreDataRepository
+        self.id = diary.id
+        self.title = diary.title
+        self.body = diary.body
+        self.date = Date(timeIntervalSince1970: TimeInterval(diary.createDate)).formatted()
     }
     
     func saveData() {
-        let diary = Diary(id: id, title: title, body: body, createDate: Int(date.timeIntervalSince1970))
+        let diary = Diary(id: id, title: title, body: body, createDate: Int(date.formatted().timeIntervalSince1970))
         coreDataRepository.writeData(with: diary)
     }
 }

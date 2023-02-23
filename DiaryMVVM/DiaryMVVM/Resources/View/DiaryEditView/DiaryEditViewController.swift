@@ -58,7 +58,7 @@ private extension DiaryEditViewController {
             .store(in: &cancellables)
         
         viewModel.$date
-            .sink { [weak self] in self?.navigationItem.title = $0.description }
+            .sink { [weak self] in self?.navigationItem.title = $0 }
             .store(in: &cancellables)
     }
     
