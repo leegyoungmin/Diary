@@ -60,9 +60,12 @@ extension DiaryListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: nil) { _, view, completion in
-            // TODO: - 삭제 옵션 설정하기
-            completion(true)
+        let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, view, completion in
+            guard let result = self?.viewModel.deleteDiary(index: indexPath.row) else {
+                completion(false)
+                return
+            }
+            completion(result)
         }
         deleteAction.image = UIImage(systemName: "trash.fill")
         

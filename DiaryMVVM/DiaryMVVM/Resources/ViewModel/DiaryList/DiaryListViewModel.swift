@@ -16,4 +16,18 @@ final class DiaryListViewModel {
             .sink { self.diaries = $0 }
             .store(in: &cancellables)
     }
+    
+    func deleteDiary(index: Int) -> Bool {
+        let diary = diaries[index]
+        var result: Bool = false
+        
+        coreDataRepository.deleteData(model: diary) { [weak self] isSuccess in
+            result = isSuccess
+            if isSuccess {
+                self?.fetchData()
+            }
+        }
+        
+        return result
+    }
 }

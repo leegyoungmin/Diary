@@ -14,6 +14,7 @@ protocol CoreDataService {
     func createObject(model: Model)
     func updateObject(model: Model, to object: Entity)
     func readData() -> AnyPublisher<[Model], Never>
+    func deleteData(model: Model, completion: @escaping (Bool) -> Void)
 }
 
 class DiaryCoreDataRepository: CoreDataService {
@@ -79,6 +80,20 @@ class DiaryCoreDataRepository: CoreDataService {
             .compactMap { $0.diary }
             .collect()
             .eraseToAnyPublisher()
+    }
+    
+    func deleteData(model: Diary, completion: @escaping (Bool) -> Void) {
+        let request = DiaryEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@", model.id.uuidString)
+        
+        guard let objects = try? context.fetch(request) else {
+            completion(false)
+            return
+        }
+        objects.forEach(context.delete)
+        save()
+        
+        completion(true)
     }
     
     private func save() {
