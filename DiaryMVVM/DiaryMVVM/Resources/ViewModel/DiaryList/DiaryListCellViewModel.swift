@@ -15,6 +15,6 @@ final class DiaryListCellViewModel {
     init(diary: Diary?) {
         self.title = diary?.title
         self.body = diary?.body
-        self.createdDate = Date(timeIntervalSince1970: TimeInterval(diary?.createDate ?? .zero)).description
+        self.createdDate = Date(timeIntervalSince1970: TimeInterval(diary?.createDate ?? .zero)).formatted()
     }
 }
