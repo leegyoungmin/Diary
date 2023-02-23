@@ -88,6 +88,12 @@ private extension DiaryEditViewController {
                 self?.pullDownBodyView(with: notification)
             }
             .store(in: &cancellables)
+        
+        viewModel.isShowMenuButton
+            .sink {
+                self.navigationItem.rightBarButtonItem?.isEnabled = $0
+            }
+            .store(in: &cancellables)
     }
     
     func bindAction() {
