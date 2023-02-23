@@ -55,7 +55,7 @@ extension DiaryListViewController: UITableViewDelegate {
             diary: diary,
             coreDataRepository: viewModel.coreDataRepository
         )
-        let editViewController = DiaryEditViewController(viewModel: viewModel)
+        let editViewController = DiaryEditViewController(viewMode: .edit, viewModel: viewModel)
         navigationController?.pushViewController(editViewController, animated: true)
     }
     

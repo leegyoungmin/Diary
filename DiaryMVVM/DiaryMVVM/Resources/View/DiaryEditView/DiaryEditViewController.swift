@@ -9,6 +9,12 @@ import SnapKit
 import Combine
 
 final class DiaryEditViewController: UIViewController {
+    
+    enum viewType {
+        case create
+        case edit
+    }
+    
     private let titleTextField: UITextField = {
         let textField = UITextField()
         textField.font = .preferredFont(forTextStyle: .title1)
@@ -28,9 +34,13 @@ final class DiaryEditViewController: UIViewController {
     private let viewModel: DiaryEditViewModel
     private var cancellables = Set<AnyCancellable>()
     
-    init(viewModel: DiaryEditViewModel) {
+    init(viewMode: viewType = .create, viewModel: DiaryEditViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        
+        if viewMode == .edit {
+            titleTextField.becomeFirstResponder()
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -59,6 +69,18 @@ private extension DiaryEditViewController {
         
         viewModel.$date
             .sink { [weak self] in self?.navigationItem.title = $0 }
+            .store(in: &cancellables)
+        
+        NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)
+            .sink { [weak self] notification in
+                self?.raiseUpBodyView(with: notification)
+            }
+            .store(in: &cancellables)
+        
+        NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)
+            .sink { [weak self] notification in
+                self?.pullDownBodyView(with: notification)
+            }
             .store(in: &cancellables)
     }
     
@@ -106,5 +128,18 @@ private extension DiaryEditViewController {
             $0.trailing.equalTo(titleTextField.snp.trailing)
             $0.bottom.equalToSuperview()
         }
+    }
+    
+    func raiseUpBodyView(with notification: Notification) {
+        if bodyTextView.isFirstResponder,
+           let userInfo = notification.userInfo,
+           let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+           bodyTextView.contentInset.bottom == 0 {
+            bodyTextView.contentInset.bottom = keyboardFrame.cgRectValue.height
+        }
+    }
+    
+    func pullDownBodyView(with notification: Notification) {
+        bodyTextView.contentInset.bottom = 0
     }
 }
