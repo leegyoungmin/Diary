@@ -30,9 +30,9 @@ final class DiaryListViewController: UIViewController {
         
         bind()
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         viewModel.fetchData()
     }
@@ -107,10 +107,11 @@ private extension DiaryListViewController {
     
     func setSnapshot(with values: [Diary]) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, Diary>()
-        
         snapshot.appendSections([.zero])
         snapshot.appendItems(values)
-        dataSource?.apply(snapshot, animatingDifferences: false)
+        dataSource?.apply(snapshot)
+        
+        print(snapshot.itemIdentifiers)
     }
 }
 

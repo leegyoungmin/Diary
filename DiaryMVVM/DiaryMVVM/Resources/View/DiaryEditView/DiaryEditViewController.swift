@@ -55,6 +55,12 @@ final class DiaryEditViewController: UIViewController {
         bind()
         bindAction()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        viewModel.saveData()
+    }
 }
 
 private extension DiaryEditViewController {
@@ -86,20 +92,33 @@ private extension DiaryEditViewController {
     
     func bindAction() {
         titleTextField.textChangePublisher
-            .debounce(for: 1, scheduler: RunLoop.main)
             .sink { [weak self] in
                 self?.viewModel.title = $0
-                self?.viewModel.saveData()
             }
             .store(in: &cancellables)
         
         bodyTextView.textChangePublisher
-            .debounce(for: 1, scheduler: RunLoop.main)
             .sink { [weak self] in
                 self?.viewModel.body = $0
-                self?.viewModel.saveData()
             }
             .store(in: &cancellables)
+    }
+}
+
+private extension DiaryEditViewController {
+    func presentAlertSheet() {
+        view.endEditing(true)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let shareAction = UIAlertAction(title: "공유하기", style: .default) { _ in
+            print("Tapped share Button")
+        }
+        let deleteAction = UIAlertAction(title: "삭제하기", style: .destructive) { _ in
+            print("Tapped Delete Button")
+        }
+        let cancelAction = UIAlertAction(title: "취소하기", style: .cancel)
+        
+        [shareAction, deleteAction, cancelAction].forEach(alertController.addAction)
+        present(alertController, animated: true)
     }
 }
 
@@ -107,6 +126,7 @@ private extension DiaryEditViewController {
 private extension DiaryEditViewController {
     func configureUI() {
         view.backgroundColor = .systemBackground
+        configureNavigationBar()
         addChildComponents()
         setUpLayout()
     }
@@ -128,6 +148,12 @@ private extension DiaryEditViewController {
             $0.trailing.equalTo(titleTextField.snp.trailing)
             $0.bottom.equalToSuperview()
         }
+    }
+    
+    func configureNavigationBar() {
+        let presentAction = UIAction { _ in self.presentAlertSheet() }
+        let menuButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), primaryAction: presentAction)
+        navigationItem.rightBarButtonItem = menuButton
     }
     
     func raiseUpBodyView(with notification: Notification) {

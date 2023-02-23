@@ -11,6 +11,10 @@ struct Diary: Hashable {
     var title: String
     var body: String
     var createDate: Int
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
 
 extension Diary {
