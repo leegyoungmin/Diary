@@ -47,8 +47,22 @@ private extension DiaryListViewController {
 }
 
 // MARK: - Configure TableView DataSource & Delegate
+extension DiaryListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let diary = viewModel.diaries[indexPath.row]
+        let viewModel = DiaryEditViewModel(
+            diary: diary,
+            coreDataRepository: viewModel.coreDataRepository
+        )
+        let editViewController = DiaryEditViewController(viewModel: viewModel)
+        navigationController?.pushViewController(editViewController, animated: true)
+    }
+}
+
 private extension DiaryListViewController {
     func setUpTableViewDataSource() {
+        tableView.delegate = self
         dataSource = UITableViewDiffableDataSource<Int, Diary>(
             tableView: tableView
         ) { table, indexPath, item in
