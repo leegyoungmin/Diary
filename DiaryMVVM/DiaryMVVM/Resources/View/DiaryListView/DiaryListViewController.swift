@@ -16,6 +16,8 @@ final class DiaryListViewController: UIViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(DiaryListCell.self, forCellReuseIdentifier: DiaryListCell.identifier)
+        tableView.separatorStyle = .singleLine
+        tableView.separatorInset = .zero
         return tableView
     }()
     
