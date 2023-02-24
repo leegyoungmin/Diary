@@ -14,7 +14,7 @@ final class DiaryEditViewModel {
     @Published var date: String = ""
     var isShowMenuButton: AnyPublisher<Bool, Never> {
         return Publishers.CombineLatest($title, $body)
-            .map { return ($0.0.isEmpty == false) && ($0.1.isEmpty == false) }
+            .map { return ($0.0.isEmpty == false) || ($0.1.isEmpty == false) }
             .eraseToAnyPublisher()
     }
     
@@ -36,7 +36,12 @@ final class DiaryEditViewModel {
     }
     
     func saveData() {
-        let diary = Diary(id: id, title: title, body: body, createDate: Int(date.formatted().timeIntervalSince1970))
+        let diary = Diary(
+            id: id,
+            title: title,
+            body: body,
+            createDate: Int(date.formatted().timeIntervalSince1970)
+        )
         coreDataRepository.writeData(with: diary)
     }
 }

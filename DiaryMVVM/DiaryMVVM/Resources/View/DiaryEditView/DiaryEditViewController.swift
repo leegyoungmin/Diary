@@ -115,8 +115,11 @@ private extension DiaryEditViewController {
     func presentAlertSheet() {
         view.endEditing(true)
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let shareAction = UIAlertAction(title: "공유하기", style: .default) { _ in
-            print("Tapped share Button")
+        let shareAction = UIAlertAction(title: "공유하기", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            let shareText = self.viewModel.title + "\n" + self.viewModel.body
+            let activityViewController = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
+            self.present(activityViewController, animated: true)
         }
         let deleteAction = UIAlertAction(title: "삭제하기", style: .destructive) { _ in
             print("Tapped Delete Button")
