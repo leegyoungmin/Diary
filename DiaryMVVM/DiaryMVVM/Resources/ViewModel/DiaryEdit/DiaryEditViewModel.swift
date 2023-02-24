@@ -14,9 +14,8 @@ final class DiaryEditViewModel {
     @Published var date: String = ""
     var isShowMenuButton: AnyPublisher<Bool, Never> {
         return Publishers.CombineLatest($title, $body)
-            .map { ($0.0.isEmpty == false) && ($0.1.isEmpty == false) }
+            .map { return ($0.0.isEmpty == false) && ($0.1.isEmpty == false) }
             .eraseToAnyPublisher()
-            
     }
     
     private let coreDataRepository: DiaryCoreDataRepository
