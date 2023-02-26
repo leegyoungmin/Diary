@@ -10,7 +10,7 @@ import UIKit
 
 final class DiaryListViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
-    private let viewModel: DiaryListViewModel = DiaryListViewModel()
+    private let viewModel: DiaryListViewModel = DiaryListViewModel(coreDataRepository: DiaryCoreDataRepository())
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -34,7 +34,7 @@ final class DiaryListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        viewModel.fetchData()
+        viewModel.reloadingData()
     }
 }
 
@@ -51,21 +51,15 @@ extension DiaryListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let diary = viewModel.diaries[indexPath.row]
-        let viewModel = DiaryEditViewModel(
-            diary: diary,
-            coreDataRepository: viewModel.coreDataRepository
-        )
+        let viewModel = DiaryEditViewModel(diary: diary, coreDataRepository: viewModel.coreDataRepository)
         let editViewController = DiaryEditViewController(viewMode: .edit, viewModel: viewModel)
         navigationController?.pushViewController(editViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, view, completion in
-            guard let result = self?.viewModel.deleteDiary(index: indexPath.row) else {
-                completion(false)
-                return
-            }
-            completion(result)
+            self?.viewModel.deleteDiary(index: indexPath.row)
+            completion(true)
         }
         deleteAction.image = UIImage(systemName: "trash.fill")
         

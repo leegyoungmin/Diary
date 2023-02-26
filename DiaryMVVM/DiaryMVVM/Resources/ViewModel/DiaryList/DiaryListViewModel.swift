@@ -8,26 +8,37 @@ import Combine
 
 final class DiaryListViewModel {
     @Published var diaries: [Diary] = []
+    @Published private var reloadData: Bool = false
     private var cancellables = Set<AnyCancellable>()
-    let coreDataRepository = DiaryCoreDataRepository()
+    let coreDataRepository: DiaryCoreDataRepository
     
+    init(coreDataRepository: DiaryCoreDataRepository) {
+        self.coreDataRepository = coreDataRepository
+        
+        $reloadData
+            .filter { $0 }
+            .sink { [weak self] _ in
+                self?.fetchData()
+                self?.reloadData = false
+            }
+            .store(in: &cancellables)
+    }
+     
     func fetchData() {
         coreDataRepository.readData()
             .sink { self.diaries = $0 }
             .store(in: &cancellables)
     }
     
-    func deleteDiary(index: Int) -> Bool {
+    func deleteDiary(index: Int) {
         let diary = diaries[index]
-        var result: Bool = false
         
         coreDataRepository.deleteData(model: diary) { [weak self] isSuccess in
-            result = isSuccess
-            if isSuccess {
-                self?.fetchData()
-            }
+            self?.reloadData = isSuccess
         }
-        
-        return result
+    }
+    
+    func reloadingData() {
+        reloadData = true
     }
 }

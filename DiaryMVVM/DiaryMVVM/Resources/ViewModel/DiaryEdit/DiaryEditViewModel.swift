@@ -12,6 +12,9 @@ final class DiaryEditViewModel {
     @Published var title: String = ""
     @Published var body: String = ""
     @Published var date: String = ""
+    @Published var isDismiss: Bool = false
+    @Published var isDelete: Bool = false
+    
     var isShowMenuButton: AnyPublisher<Bool, Never> {
         return Publishers.CombineLatest($title, $body)
             .map { return ($0.0.isEmpty == false) || ($0.1.isEmpty == false) }
@@ -22,7 +25,6 @@ final class DiaryEditViewModel {
     
     init(diary: Diary? = nil, coreDataRepository: DiaryCoreDataRepository) {
         self.coreDataRepository = coreDataRepository
-        
         guard let diary = diary else {
             self.id = UUID()
             self.date = Date().formatted()
@@ -36,6 +38,8 @@ final class DiaryEditViewModel {
     }
     
     func saveData() {
+        guard isDelete == false else { return }
+        
         let diary = Diary(
             id: id,
             title: title,
@@ -43,5 +47,19 @@ final class DiaryEditViewModel {
             createDate: Int(date.formatted().timeIntervalSince1970)
         )
         coreDataRepository.writeData(with: diary)
+    }
+    
+    func deleteData() {
+        isDelete = true
+        let diary = Diary(
+            id: id,
+            title: title,
+            body: body,
+            createDate: Int(date.formatted().timeIntervalSince1970)
+        )
+        
+        coreDataRepository.deleteData(model: diary) { [weak self] in
+            self?.isDismiss = $0
+        }
     }
 }

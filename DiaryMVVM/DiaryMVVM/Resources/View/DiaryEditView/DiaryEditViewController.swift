@@ -94,6 +94,13 @@ private extension DiaryEditViewController {
                 self.navigationItem.rightBarButtonItem?.isEnabled = $0
             }
             .store(in: &cancellables)
+        
+        viewModel.$isDismiss
+            .filter { $0 }
+            .sink { _ in
+                self.navigationController?.popViewController(animated: true)
+            }
+            .store(in: &cancellables)
     }
     
     func bindAction() {
@@ -122,7 +129,7 @@ private extension DiaryEditViewController {
             self.present(activityViewController, animated: true)
         }
         let deleteAction = UIAlertAction(title: "삭제하기", style: .destructive) { _ in
-            print("Tapped Delete Button")
+            self.viewModel.deleteData()
         }
         let cancelAction = UIAlertAction(title: "취소하기", style: .cancel)
         
