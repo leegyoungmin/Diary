@@ -62,9 +62,9 @@ extension DiaryListViewController: UITableViewDelegate {
         trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath
     ) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, view, completion in
-            guard let controller = self?.makeDeleteAlert(with: indexPath) else {
-                completion(false)
-                return
+            let builder = AlertConcreteBuilder()
+            let controller = DiaryAlertDirector().makeDeleteAlert(builder: builder) { _ in
+                self?.viewModel.deleteDiary(index: indexPath.row)
             }
             
             self?.present(controller, animated: true)
@@ -84,21 +84,6 @@ extension DiaryListViewController: UITableViewDelegate {
         shareAction.backgroundColor = .systemBlue
         
         return UISwipeActionsConfiguration(actions: [deleteAction, shareAction])
-    }
-}
-
-// MARK: - Alert Controller
-private extension DiaryListViewController {
-    func makeDeleteAlert(with indexPath: IndexPath) -> UIAlertController {
-        let controller = UIAlertController(title: "삭제", message: "정말 삭제 하시겠습니까?", preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "확인", style: .destructive) { _ in
-            self.viewModel.deleteDiary(index: indexPath.row)
-        }
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
-        
-        [confirmAction, cancelAction].forEach(controller.addAction)
-        
-        return controller
     }
 }
 

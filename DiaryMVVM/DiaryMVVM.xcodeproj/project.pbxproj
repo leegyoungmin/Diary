@@ -24,6 +24,8 @@
 		1834078A29A51BFD00332413 /* UIControl+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834078929A51BFD00332413 /* UIControl+Extension.swift */; };
 		184B99FD29A73CB3009E03DC /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B99FC29A73CB3009E03DC /* Date+Extension.swift */; };
 		184B99FF29A741D9009E03DC /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B99FE29A741D9009E03DC /* String+Extension.swift */; };
+		18CF6C7B29AB1115009F110C /* AlertBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF6C7A29AB1115009F110C /* AlertBuilder.swift */; };
+		18CF6C7D29AB122D009F110C /* DiaryAlertDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF6C7C29AB122D009F110C /* DiaryAlertDirector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		1834078929A51BFD00332413 /* UIControl+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Extension.swift"; sourceTree = "<group>"; };
 		184B99FC29A73CB3009E03DC /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		184B99FE29A741D9009E03DC /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		18CF6C7A29AB1115009F110C /* AlertBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBuilder.swift; sourceTree = "<group>"; };
+		18CF6C7C29AB122D009F110C /* DiaryAlertDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryAlertDirector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,11 +184,21 @@
 		1834078829A51BF000332413 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				18CF6C7929AB1107009F110C /* AlertDirector */,
 				1834078929A51BFD00332413 /* UIControl+Extension.swift */,
 				184B99FC29A73CB3009E03DC /* Date+Extension.swift */,
 				184B99FE29A741D9009E03DC /* String+Extension.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		18CF6C7929AB1107009F110C /* AlertDirector */ = {
+			isa = PBXGroup;
+			children = (
+				18CF6C7A29AB1115009F110C /* AlertBuilder.swift */,
+				18CF6C7C29AB122D009F110C /* DiaryAlertDirector.swift */,
+			);
+			path = AlertDirector;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18CF6C7D29AB122D009F110C /* DiaryAlertDirector.swift in Sources */,
 				1834077929A4A95300332413 /* DiaryListViewModel.swift in Sources */,
 				1834077F29A4B11A00332413 /* DiaryListCell.swift in Sources */,
 				184B99FD29A73CB3009E03DC /* Date+Extension.swift in Sources */,
@@ -272,6 +287,7 @@
 				1824876429A5EDDE00C1F95A /* DiaryEditViewController.swift in Sources */,
 				1824876F29A6257700C1F95A /* DiaryCoreDataRepository.swift in Sources */,
 				184B99FF29A741D9009E03DC /* String+Extension.swift in Sources */,
+				18CF6C7B29AB1115009F110C /* AlertBuilder.swift in Sources */,
 				1834075D29A49DC700332413 /* DiaryListViewController.swift in Sources */,
 				1834075929A49DC700332413 /* AppDelegate.swift in Sources */,
 				1834075B29A49DC700332413 /* SceneDelegate.swift in Sources */,
