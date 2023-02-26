@@ -25,14 +25,15 @@ final class DiaryListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureUI()
         setUpTableViewDataSource()
         
         bind()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         viewModel.reloadingData()
     }
@@ -56,7 +57,10 @@ extension DiaryListViewController: UITableViewDelegate {
         navigationController?.pushViewController(editViewController, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(
+        _ tableView: UITableView,
+        trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath
+    ) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, view, completion in
             guard let controller = self?.makeDeleteAlert(with: indexPath) else {
                 completion(false)
@@ -123,8 +127,6 @@ private extension DiaryListViewController {
         snapshot.appendSections([.zero])
         snapshot.appendItems(values)
         dataSource?.apply(snapshot)
-        
-        print(snapshot.itemIdentifiers)
     }
 }
 

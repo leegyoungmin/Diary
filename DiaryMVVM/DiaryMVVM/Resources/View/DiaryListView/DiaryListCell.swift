@@ -22,6 +22,7 @@ final class DiaryListCellContentView: UIView, UIContentView {
     
     private let headerLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         return label
     }()
@@ -29,6 +30,7 @@ final class DiaryListCellContentView: UIView, UIContentView {
     private let dateLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         label.setContentHuggingPriority(.required, for: .horizontal)
         return label
@@ -37,6 +39,7 @@ final class DiaryListCellContentView: UIView, UIContentView {
     private let bodyLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.setContentCompressionResistancePriority(.required, for: .horizontal)
         return label
     }()
