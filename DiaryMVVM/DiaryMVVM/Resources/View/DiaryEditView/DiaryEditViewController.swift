@@ -128,13 +128,29 @@ private extension DiaryEditViewController {
             let activityViewController = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
             self.present(activityViewController, animated: true)
         }
-        let deleteAction = UIAlertAction(title: "삭제하기", style: .destructive) { _ in
-            self.viewModel.deleteData()
+        let deleteAction = UIAlertAction(title: "삭제하기", style: .destructive) { [weak self] _ in
+            guard let controller = self?.makeDeleteAlert() else { return }
+            self?.present(controller, animated: true)
         }
         let cancelAction = UIAlertAction(title: "취소하기", style: .cancel)
         
         [shareAction, deleteAction, cancelAction].forEach(alertController.addAction)
         present(alertController, animated: true)
+    }
+}
+
+// MARK: - Alert Controller
+private extension DiaryEditViewController {
+    func makeDeleteAlert() -> UIAlertController {
+        let controller = UIAlertController(title: "삭제", message: "정말 삭제 하시겠습니까?", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "확인", style: .destructive) { _ in
+            self.viewModel.deleteData()
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        
+        [confirmAction, cancelAction].forEach(controller.addAction)
+        
+        return controller
     }
 }
 
